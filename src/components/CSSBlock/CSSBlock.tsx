@@ -1,11 +1,15 @@
 "use client";
+
 import { useForm } from "react-hook-form";
-import React, { useState } from "react";
+import React from "react";
 import styles from "./CSSBlock.module.scss";
 import { motion } from "framer-motion";
+import clsx from "clsx";
 
 export type CSSBlockType = {
   cssProperties: { [x: string]: string };
+  className?: string;
+  selectorText: string;
 };
 
 export default function CSSBlock({
@@ -16,20 +20,16 @@ export default function CSSBlock({
     "aspect-ratio": "1 / 1",
     "border-radius": "10px",
   },
+  className,
+  selectorText = ".box",
 }: CSSBlockType) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    watch,
-    setValue,
-  } = useForm({
+  const { register, watch, setValue } = useForm({
     defaultValues: cssProperties,
   });
 
   const generateCSS = (cssValues: { [x: string]: string }) => {
     const cssLines = [];
-    cssLines.push({ str: ".box {", value: "", property: "" });
+    cssLines.push({ str: `${selectorText} {`, value: "", property: "" });
     for (const property in cssValues) {
       cssLines.push({
         str: `  ${property}: `,
@@ -42,7 +42,7 @@ export default function CSSBlock({
   };
 
   return (
-    <div className={styles.CSSBlock}>
+    <div className={clsx(styles.CSSBlock, className)}>
       <div className={styles.CSSBlock__css}>
         {generateCSS(cssProperties).map(({ str, value, property }) => (
           <div key={value} className={styles.CSSBlock__css__line}>
