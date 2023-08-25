@@ -11,6 +11,9 @@
   flex-direction: row;
   align-items: stretch;
 
+  font-size: 2rem;
+  line-height: 1.5;
+
   overflow: hidden;
 
   &__css {
@@ -40,5 +43,22 @@
     padding: 1.25rem;
 
     background-color: #fff;
+  }
+}
+
+@media (max-width: 500px) {
+  .CSSBlock {
+    flex-direction: column-reverse;
+    min-width: 0;
+
+    font-size: 0.95rem;
+    line-height: 1.15;
+
+    &__preview {
+      flex: 1 0 150px;
+      padding: 1.25rem;
+
+      background-color: #fff;
+    }
   }
 }
