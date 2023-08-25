@@ -11,12 +11,11 @@ import styles from "./page.module.scss";
 
 export default function Home() {
   const canvasManagerRef = useRef<CanvasManager>(
-    new SimpleCircles(30, undefined, [10, 40], [1, 5])
+    new SimpleCircles(40, undefined, [10, 30], [1, 5])
   );
 
   const CSSProps = {
     "background-color": "red",
-    color: "blue",
     width: "100px",
     "aspect-ratio": "1 / 1",
     "border-radius": "10px",
